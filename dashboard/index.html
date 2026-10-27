@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Behavior & Propensity Intelligence Dashboard | Rudra Pal</title>
+  <meta name="description" content="Executive-level Customer Behavior & Lifetime Propensity Analytics Dashboard by Rudra Pal">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🛍️</div>
+        <div class="brand-text">
+          <h2>ShopperIQ</h2>
+          <span>Analytics Suite</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#overview" class="nav-item active">
+          <span class="nav-icon">📊</span> Overview & KPIs
+        </a>
+        <a href="#segments" class="nav-item">
+          <span class="nav-icon">🎯</span> RFM Segmentation
+        </a>
+        <a href="#propensity" class="nav-item">
+          <span class="nav-icon">🤖</span> ML Propensity
+        </a>
+        <a href="#explorer" class="nav-item">
+          <span class="nav-icon">🔍</span> Customer Explorer
+        </a>
+        <a href="#strategy" class="nav-item">
+          <span class="nav-icon">💡</span> Strategic Playbook
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="author-badge">
+          <div class="avatar">RP</div>
+          <div class="author-info">
+            <strong>Rudra Pal</strong>
+            <span>Data Analyst</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <div class="header-title">
+          <h1>Retail Customer Shopping Behavior & Predictive Intelligence</h1>
+          <p class="subtitle">End-to-End Portfolio Analytics: SQL • Python • ML Propensity • RFM Modeling • Power BI</p>
+        </div>
+        <div class="header-actions">
+          <span class="status-chip live"><span class="pulse-dot"></span> Pipeline Active</span>
+          <button class="btn btn-primary" onclick="window.print()">📥 Export PDF Report</button>
+        </div>
+      </header>
+
+      <!-- KPI Summary Cards -->
+      <section id="overview" class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap bg-blue">💰</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Total Revenue</span>
+            <h3 class="kpi-val" id="kpi-revenue">$233,081</h3>
+            <span class="kpi-trend positive">↑ 3,900 Total Purchases</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap bg-purple">👥</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Active Customers</span>
+            <h3 class="kpi-val" id="kpi-customers">3,900</h3>
+            <span class="kpi-trend neutral">Avg Age: 44.1 yrs</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap bg-emerald">💳</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Average Order Value</span>
+            <h3 class="kpi-val" id="kpi-aov">$59.76</h3>
+            <span class="kpi-trend positive">Range: $20 – $100</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap bg-amber">⭐</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Subscription Rate</span>
+            <h3 class="kpi-val" id="kpi-sub-rate">27.0%</h3>
+            <span class="kpi-trend highlight">1,053 Subscribers</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap bg-rose">🏆</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Customer Satisfaction</span>
+            <h3 class="kpi-val" id="kpi-rating">3.75 / 5.0</h3>
+            <span class="kpi-trend positive">Gloves Top Rated (3.86)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics Charts Section -->
+      <section class="charts-grid">
+        <div class="chart-card">
+          <div class="card-header">
+            <h3>Revenue by Product Category</h3>
+            <span class="badge">Sales Distribution</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="categoryChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <h3>Advanced RFM Customer Segmentation</h3>
+            <span class="badge">Customer Tiers</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="rfmChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <h3>Gender Revenue Contribution</h3>
+            <span class="badge">Demographics</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="genderChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <h3>Age Group Revenue Distribution</h3>
+            <span class="badge">Demographic Cohorts</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="ageChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Machine Learning Propensity Section -->
+      <section id="propensity" class="ml-spotlight-card">
+        <div class="ml-badge-container">
+          <span class="pulse-tag">🤖 ML Predictive Engine</span>
+          <h2>Subscription & High-Spender Propensity Engine</h2>
+          <p>Trained using <strong>Random Forest (84.8% Accuracy, 0.929 ROC-AUC)</strong> and <strong>Logistic Regression (0.932 ROC-AUC)</strong> to identify which customers are prime candidates for VIP subscriptions and high-ticket upsells.</p>
+        </div>
+        <div class="ml-stats-row">
+          <div class="ml-stat-box">
+            <span class="stat-number">0.929</span>
+            <span class="stat-label">Model ROC-AUC Score</span>
+          </div>
+          <div class="ml-stat-box">
+            <span class="stat-number">2,518</span>
+            <span class="stat-label">Repeat Non-Subscribers Targeted</span>
+          </div>
+          <div class="ml-stat-box">
+            <span class="stat-number">+$150K</span>
+            <span class="stat-label">Estimated Annual Revenue Uplift</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Customer Explorer Table -->
+      <section id="explorer" class="data-table-section">
+        <div class="card-header table-header">
+          <div>
+            <h3>Interactive Customer Explorer</h3>
+            <p>Filter by category or search by customer ID / product.</p>
+          </div>
+          <div class="table-controls">
+            <input type="text" id="searchInput" placeholder="Search customer or item..." class="input-search">
+            <select id="categoryFilter" class="select-filter">
+              <option value="All">All Categories</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Footwear">Footwear</option>
+              <option value="Outerwear">Outerwear</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table" id="customerTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Age / Gender</th>
+                <th>Category</th>
+                <th>Item Purchased</th>
+                <th>Spend ($)</th>
+                <th>Subscribed</th>
+                <th>RFM Segment</th>
+                <th>Propensity Score</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Rendered dynamically by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Strategic Business Recommendations Playbook -->
+      <section id="strategy" class="strategy-section">
+        <div class="card-header">
+          <h3>Strategic Business Recommendations & Playbook</h3>
+          <span class="badge highlight">C-Suite Action Items</span>
+        </div>
+        <div class="strategy-grid">
+          <div class="strategy-card">
+            <div class="strategy-num">01</div>
+            <h4>Convert 2,518 Repeat Buyers</h4>
+            <p>Over 2,500 customers have purchased more than 5 times without subscribing. Launch a targeted VIP onboarding promotion with free shipping incentives to convert an estimated 15-20% into recurring subscribers.</p>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-num">02</div>
+            <h4>Plug Margin Leakage on Discounts</h4>
+            <p>839 customers spent over the average purchase amount ($59.76) while using a discount code. Implement minimum spend thresholds (e.g., $80 minimum for discount eligibility) to protect margin.</p>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-num">03</div>
+            <h4>Re-engage 565 "At Risk" High Spenders</h4>
+            <p>RFM analysis uncovered 565 high-value previous buyers whose visit frequency is dropping. Deploy automated re-engagement email drip campaigns offering personalized seasonal perks.</p>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-num">04</div>
+            <h4>Express Shipping Monetization</h4>
+            <p>Express shipping customers average $60.48 vs $58.46 for Standard. Introduce bundled express shipping with subscription tiers to accelerate cart checkout speeds.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="dashboard-footer">
+        <p>Built with ❤️ by <strong>Rudra Pal</strong> | Data Analyst & Analytics Portfolio | SQL • Python • Machine Learning • Power BI</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
